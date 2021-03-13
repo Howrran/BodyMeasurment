@@ -18,6 +18,37 @@ class CalculateDistance:
 
         return distance
 
+    def calculate_pose_distances(self, metric_x, metric_y, pose_coords):
+        # left hand 5 7 9
+        # right hand 6 8 10
+        # left leg 11 13 15
+        # right leg 12 14 16
+        left_hand = (
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[5], pose_coords[7])
+                +
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[7], pose_coords[9])
+        )
+        left_leg = (
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[11], pose_coords[13])
+                +
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[13], pose_coords[15])
+        )
+        right_hand = (
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[6], pose_coords[8])
+                +
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[8], pose_coords[10])
+        )
+        right_leg = (
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[12], pose_coords[14])
+                +
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[14], pose_coords[16])
+        )
+
+        print('left hand: ', left_hand)
+        print('left leg: ', left_leg)
+        print('right hand: ', right_hand)
+        print('right leg: ', right_leg)
+
     def get_points(self, img):
         points = []
         img_to_show = img.copy()

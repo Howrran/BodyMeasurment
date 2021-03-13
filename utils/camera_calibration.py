@@ -11,7 +11,7 @@ class CameraCalibration:
     r2 = 2  # for measurement
     # ref_ht = 2.84
     # ref_ht = 3.45
-    ref_ht = 1.5
+    ref_ht = 1.62
     rectangle_row = 9
     rectangle_col = 6
     # square_size=int(r+1)
