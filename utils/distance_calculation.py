@@ -11,6 +11,13 @@ class CalculateDistance:
 
         return distance
 
+    def calculate_distance_between_preset_points(self, metric_x, metric_y, point1, point2):
+        # points = self.get_points(image)
+        distance = self.getDistance(point1, point2)
+        distance = self.pixel_to_distance(distance, metric_x, metric_y)
+
+        return distance
+
     def get_points(self, img):
         points = []
         img_to_show = img.copy()
