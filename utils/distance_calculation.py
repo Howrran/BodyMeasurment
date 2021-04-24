@@ -49,6 +49,37 @@ class CalculateDistance:
         print('right hand: ', right_hand)
         print('right leg: ', right_leg)
 
+    def calculate_mediapipe_pose_distances(self, metric_x, metric_y, pose_coords):
+        # left hand 11 13 15
+        # right hand 12 14 16
+        # left leg 23 25 27
+        # right leg 24 26 28
+        left_hand = (
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[11], pose_coords[13])
+                +
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[13], pose_coords[15])
+        )
+        left_leg = (
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[24], pose_coords[26])
+                +
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[26], pose_coords[28])
+        )
+        right_hand = (
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[12], pose_coords[14])
+                +
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[14], pose_coords[16])
+        )
+        right_leg = (
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[24], pose_coords[26])
+                +
+                self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[26], pose_coords[28])
+        )
+
+        print('left hand: ', left_hand)
+        print('left leg: ', left_leg)
+        print('right hand: ', right_hand)
+        print('right leg: ', right_leg)
+
     def get_points(self, img):
         points = []
         img_to_show = img.copy()
