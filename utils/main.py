@@ -46,12 +46,13 @@ for coor in pose_coord:
 
 distance_calc.calculate_pose_distances(metric_x, metric_y, pose_coord)
 
-# cv2.imshow('1', image)
+cv2.imshow('1', image)
 
+cv2.waitKey()
 # distance = distance_calc.calculate_distance_between_points(image, metric_x, metric_y)
 # print('DISTANCE : ', distance)
-cv2.waitKey()
-cv2.destroyAllWindows()
+# cv2.waitKey()
+# cv2.destroyAllWindows()
 # print(pose_coord)
 # print( distance_calc.calculate_distance_between_preset_points(metric_x, metric_y, pose_coord[5], pose_coord[7]) +
 # distance_calc.calculate_distance_between_preset_points(metric_x, metric_y, pose_coord[7], pose_coord[9]))
