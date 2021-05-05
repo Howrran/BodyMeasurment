@@ -10,7 +10,7 @@ camera = CameraCalibration()
 distance_calc = CalculateDistance()
 pose_detector = PoseDetector()
 
-PATH1 = '/home/howran/PycharmProjects/BodyMeasurment/1.jpg'
+PATH1 = '/home/howran/PycharmProjects/BodyMeasurment/2_1.jpg'
 # PATH1 = '/home/howran/PycharmProjects/BodyMeasurment/2_1.jpg'
 PATH2 = '/home/howran/PycharmProjects/BodyMeasurment/2_2.jpg'
 # PATH2 = '//home/howran/PycharmProjects/BodyMeasurment/2.jpg'
@@ -53,7 +53,7 @@ distance_calc.calculate_pose_distances(metric_x, metric_y, pose_coord)
 ###
 mp = MediaPipeBase()
 
-pose_coord, im = mp.analyze_image(PATH3)
+pose_coord, im = mp.analyze_image(PATH2)
 # im = cv2.imread(PATH2)
 
 f = {13: 55.6, 14: 56.2, 25: 86.9, 26:86.7}
