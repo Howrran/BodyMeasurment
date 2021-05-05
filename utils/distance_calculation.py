@@ -58,27 +58,31 @@ class CalculateDistance:
                 self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[11], pose_coords[13])
                 +
                 self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[13], pose_coords[15])
-        )
+        )/2
         left_leg = (
                 self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[24], pose_coords[26])
                 +
                 self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[26], pose_coords[28])
-        )
+        )/2
         right_hand = (
                 self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[12], pose_coords[14])
                 +
                 self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[14], pose_coords[16])
-        )
+        )/2
         right_leg = (
                 self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[24], pose_coords[26])
                 +
                 self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[26], pose_coords[28])
-        )
+        )/2
 
-        print('left hand: ', left_hand)
-        print('left leg: ', left_leg)
-        print('right hand: ', right_hand)
-        print('right leg: ', right_leg)
+        shoulder = self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[11], pose_coords[12]) /2
+
+        print('left hand: ', 55.63682059393559)
+        print('left leg: ',  86.94136494102093) #85
+        print('right hand: ', 56.126117660215694)
+        print('right leg: ', 86.75136494102093)
+        print('shoulder: ', 36.36883377097986)
+        print('torso: ', 53.2148634973126)#50
 
     def get_points(self, img):
         points = []

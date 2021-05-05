@@ -93,7 +93,7 @@ class MediaPipeBase:
 
         return image, features_coordinates
 
-    def analyze_image(self, image):
+    def analyze_image(self, image, ):
         pose =  mp.solutions.pose.Pose(static_image_mode=True, min_detection_confidence=0.5)
 
         image = cv2.imread(image)
@@ -103,7 +103,7 @@ class MediaPipeBase:
         # cv2.imshow('1', img)
         # cv2.waitKey()
 
-        return  pose_coordinates
+        return  pose_coordinates, img
 # mp_drawing = mp.solutions.drawing_utils
 # mp_pose = mp.solutions.pose
 #
