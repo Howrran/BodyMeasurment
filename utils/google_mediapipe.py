@@ -93,43 +93,16 @@ class MediaPipeBase:
 
         return image, features_coordinates
 
-    def analyze_image(self, image, ):
+    def analyze_image(self, image):
         pose =  mp.solutions.pose.Pose(static_image_mode=True, min_detection_confidence=0.5)
 
         image = cv2.imread(image)
         results = pose.process(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 
         img, pose_coordinates = self.draw_pose_features(image, results.pose_landmarks)
+
+
         # cv2.imshow('1', img)
         # cv2.waitKey()
 
         return  pose_coordinates, img
-# mp_drawing = mp.solutions.drawing_utils
-# mp_pose = mp.solutions.pose
-#
-# # For static images:
-# pose =  mp_pose.Pose(static_image_mode=True, min_detection_confidence=0.5)
-# image = cv2.imread('/home/howran/PycharmProjects/BodyMeasurment/2_2.jpg')
-
-# a = MediaPipeBase()
-# a.analyze_image('/home/howran/PycharmProjects/BodyMeasurment/2_2.jpg')
-# image_height, image_width, _ = image.shape
-# # Convert the BGR image to RGB before processing.
-# results = pose.process(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
-#
-# if not results.pose_landmarks:
-#   pass
-# print(
-#     f'Nose coordinates: ('
-#     # f'{results.pose_landmarks.landmark[mp_holistic.PoseLandmark.NOSE].x * image_width}, '
-#     # f'{results.pose_landmarks.landmark[mp_holistic.PoseLandmark.NOSE].y * image_height})'
-# )
-# # Draw pose landmarks on the image.
-# annotated_image = image.copy()
-# # Use mp_pose.UPPER_BODY_POSE_CONNECTIONS for drawing below when
-# # upper_body_only is set to True.
-# mp_drawing.draw_landmarks(
-#     annotated_image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
-#
-# cv2.imshow('1', annotated_image)
-# cv2.waitKey()

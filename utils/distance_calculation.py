@@ -43,13 +43,15 @@ class CalculateDistance:
                 +
                 self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[14], pose_coords[16])
         )
+        print('PoseNet: ')
 
         print('left hand: ', left_hand)
         print('left leg: ', left_leg)
         print('right hand: ', right_hand)
         print('right leg: ', right_leg)
 
-    def calculate_mediapipe_pose_distances(self, metric_x, metric_y, pose_coords):
+
+    def calculate_mediapipe_pose_distances(self, image, metric_x, metric_y, pose_coords):
         # left hand 11 13 15
         # right hand 12 14 16
         # left leg 23 25 27
@@ -76,13 +78,45 @@ class CalculateDistance:
         )/2
 
         shoulder = self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[11], pose_coords[12]) /2
+        torso = self.calculate_distance_between_preset_points(metric_x, metric_y, pose_coords[12], pose_coords[24]) /2
 
-        print('left hand: ', 55.63682059393559)
-        print('left leg: ',  86.94136494102093) #85
-        print('right hand: ', 56.126117660215694)
-        print('right leg: ', 86.75136494102093)
-        print('shoulder: ', 36.36883377097986)
-        print('torso: ', 53.2148634973126)#50
+
+        print('MediaPipe: ')
+        print('left hand: ', left_hand)
+        print('left leg: ',  left_leg)
+        print('right hand: ', right_hand)
+        print('right leg: ', right_leg)
+        print('shoulder: ', shoulder)
+        print('torso: ', torso)
+
+        f = {}
+        f[13] = left_hand
+        f[14] = right_hand
+        f[25] = left_leg
+        f[26] = right_leg
+        f2 = {13: (20, 60), 14: (30, 45), 25: (-20, 0), 26: (80, 0)}
+
+        for coor in pose_coords:
+            if coor in [11, 13, 15, 12, 14, 16, 23, 25, 27, 24, 26, 28]:
+                x, y = pose_coords[coor]
+                cv2.circle(image, center=(int(x), int(y)), radius=2, color=(0, 255, 0), thickness=-1)
+                if coor in [13, 14, 25, 26]:
+                    r, t = f2[coor]
+                    cv2.putText(image, str(round(f[coor], 1)), (x - r, y - t), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2,
+                                cv2.LINE_AA)
+
+        x1, y1 = pose_coords[11]
+        x2, y2 = pose_coords[12]
+        cv2.putText(image, str(round(shoulder, 1)), (int((x1 + x2) / 2) - 20, int((y1 + y2) / 2) - 15), cv2.FONT_HERSHEY_SIMPLEX, 1,
+                    (255, 255, 255), 2, cv2.LINE_AA)
+        x1, y1 = pose_coords[12]
+        x2, y2 = pose_coords[24]
+        cv2.putText(image, str(round(torso, 1)), (int((x1 + x2) / 2) - 80, int((y1 + y2) / 2)), cv2.FONT_HERSHEY_SIMPLEX, 1,
+                    (255, 255, 255), 2, cv2.LINE_AA)
+
+        cv2.imshow('Calculation Results', image)
+        cv2.waitKey()
+        cv2.imwrite('im_numb.jpg', image)
 
     def get_points(self, img):
         points = []
