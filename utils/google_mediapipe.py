@@ -101,8 +101,4 @@ class MediaPipeBase:
 
         img, pose_coordinates = self.draw_pose_features(image, results.pose_landmarks)
 
-
-        # cv2.imshow('1', img)
-        # cv2.waitKey()
-
         return  pose_coordinates, img

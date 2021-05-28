@@ -89,20 +89,20 @@ class CalculateDistance:
         print('shoulder: ', shoulder)
         print('torso: ', torso)
 
-        f = {}
-        f[13] = left_hand
-        f[14] = right_hand
-        f[25] = left_leg
-        f[26] = right_leg
-        f2 = {13: (20, 60), 14: (30, 45), 25: (-20, 0), 26: (80, 0)}
+        distance_keypoint = {}
+        distance_keypoint[13] = left_hand
+        distance_keypoint[14] = right_hand
+        distance_keypoint[25] = left_leg
+        distance_keypoint[26] = right_leg
+        distance_position = {13: (20, 60), 14: (30, 45), 25: (-20, 0), 26: (80, 0)}
 
         for coor in pose_coords:
             if coor in [11, 13, 15, 12, 14, 16, 23, 25, 27, 24, 26, 28]:
                 x, y = pose_coords[coor]
                 cv2.circle(image, center=(int(x), int(y)), radius=2, color=(0, 255, 0), thickness=-1)
                 if coor in [13, 14, 25, 26]:
-                    r, t = f2[coor]
-                    cv2.putText(image, str(round(f[coor], 1)), (x - r, y - t), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2,
+                    r, t = distance_position[coor]
+                    cv2.putText(image, str(round(distance_keypoint[coor], 1)), (x - r, y - t), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2,
                                 cv2.LINE_AA)
 
         x1, y1 = pose_coords[11]

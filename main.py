@@ -41,14 +41,7 @@ pose_coord = pose_detector.extract_pose_from_image(image,values)
 ####
 pose_coord = pose_detector.convert_coords(pose_coord)
 
-for coor in pose_coord:
-    x, y = coor
-    cv2.circle(image, center=(int(x), int(y)), radius=2, color=(0,255,0),  thickness=-1)
-
 distance_calc.calculate_pose_distances(metric_x, metric_y, pose_coord)
-#
-# cv2.imshow('1', image)
-# cv2.waitKey()
 
 ####
 # MP
