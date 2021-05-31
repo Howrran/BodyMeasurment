@@ -11,25 +11,25 @@ import argparse
 my_parser = argparse.ArgumentParser(description='List the content of a folder')
 
 # Add the arguments
-my_parser.add_argument('Calibration_Path',
-                       metavar='Calibration_Path',
+my_parser.add_argument('calibration_path',
+                       metavar='calibration_path',
                        type=str,
                        help='the path to calibration photo')
 
-my_parser.add_argument('Body_Path',
-                       metavar='Body_Path',
+my_parser.add_argument('body_path',
+                       metavar='body_path',
                        type=str,
                        help='the path to body photo')
 
-# args = my_parser.parse_args()
+args = my_parser.parse_args()
 
 camera = CameraCalibration()
 distance_calc = CalculateDistance()
 pose_detector = PoseDetector()
 
 
-PATH1 = '/home/howran/PycharmProjects/BodyMeasurment/11.jpg'
-PATH2 = '/home/howran/PycharmProjects/BodyMeasurment/2_2.jpg'
+PATH1 = args.calibration_path
+PATH2 = args.body_path
 
 
 _, calibration_image = data.transforms.presets.ssd.load_test(PATH1, short=512)
